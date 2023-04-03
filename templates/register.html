@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../css/register.css"/>
+    <title>Register</title>
+</head>
+<body>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    <h2>Register</h2>
+                    <div class="inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        {{ form.name(class="form-control") }}
+                        {{form.name.label}}
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        {{ form.surname.label }}
+                        {{ form.surname(class="form-control") }}
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        {{ form.email.label }}
+                        {{ form.email(class="form-control", type="email") }}
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        {{ form.password.label }}
+                        {{ form.password(class="form-control", type="password") }}
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        {{ form.password_again.label }}
+                        {{ form.password_again(class="form-control", type="password") }}
+                    </div>
+                        {{ form.submit(type="submit", class="btn btn-primary", style="width: 100%;
+                            height: 40px;
+                            border-radius: 40px;
+                            background: #fff;
+                            border: none;
+                            outline: none;
+                            cursor: pointer;
+                            font-size: 1em;
+                            font-weight: 600;")}}
+                    <div class="register">
+                        <p>Already have an account? <a href="/login">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
