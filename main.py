@@ -18,8 +18,17 @@ def load_user(user_id):
 
 
 @app.route("/")
+def page():
+    if current_user.is_authenticated:
+        return render_template("mainpage.html")
+    return redirect("/login")
+
+
+@app.route("/mainpage")
 def index():
-    return render_template("mainpage.html")
+    if current_user.is_authenticated:
+        return render_template("mainpage.html")
+    return redirect("/login")
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -56,7 +65,7 @@ def login():
         user = db_sess.query(User).filter(User.email == form.email.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
-            return redirect("/")
+            return redirect("/mainpage")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
@@ -67,7 +76,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect("/")
+    return redirect("/login")
 
 
 def main():
