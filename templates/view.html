@@ -1,0 +1,9 @@
+<html>
+<body>
+{% for item in response %}
+<img src='{{item["photo"]}}' width="400" height="400"><br><br>
+<b style="color:blue;">{{item['id']}}:</b>
+<hr>
+{% endfor %}
+</body>
+</html>
