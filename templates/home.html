@@ -11,7 +11,7 @@
 
 <body>
 <div class="container">
-<center><h1>Home Page</h1></center>
+<center><h1>Добавьте фото пользователя</h1></center>
 {% with messages = get_flashed_messages() %}
 {% for message in messages %}
 <div class="alert alert-danger">
@@ -19,7 +19,7 @@
 </div>
 {% endfor %}
 {% endwith %}
-<form enctype="multipart/form-data" method="post" action="{{url_for('upload')}}" >
+<form enctype="multipart/form-data" method="post" action="{{url_for('profile')}}" >
     <input type="file" name="file">
     <input type="submit"/>
 </form>
