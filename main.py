@@ -74,6 +74,7 @@ def login():
 
 @app.route('/add', methods=['POST', 'GET'])
 def profile():
+    print(1000)
     if request.method == "GET":
         return render_template('home.html')
     elif request.method == "POST":
@@ -105,7 +106,6 @@ def profile():
 
 @app.route("/profile", methods=['GET', 'POST'])
 def view():
-    print(request.method)
     if request.method == "GET":
         try:
             conn = sqlite3.connect("db/database.db")
@@ -113,11 +113,10 @@ def view():
             cursor = conn.cursor()
             cursor.execute(f"""select * from users where id = {int(session['_user_id'])}""")
             rows = cursor.fetchall()
-            print(rows)
             conn.close()
             return render_template('view.html', response=rows)
         except sqlite3.Error as error:
-            return redirect("/add")
+            return
     if request.method == "POST":
         estination_path = ""
         fileobj = request.files['file']
@@ -142,7 +141,7 @@ def view():
         else:
             flash("only images are accepted")
             return render_template('home.html')
-        return render_template('view.html')
+    return redirect(url_for("view"))
         # if request.form['s_b'] == ' Изменить / Добавить фото профиля ':
         #     return render_template('home.html')
 

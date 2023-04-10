@@ -14,18 +14,10 @@
 <p>Name:</p>
 <p>Surname:</p>
 <img src='{{item["photo"]}}' width="200" height="200"><br><br>
-{% with messages = get_flashed_messages() %}
-{% for message in messages %}
-<div class="alert alert-danger">
-    <strong>Error!<strong>{{message}}
-</div>
-{% endfor %}
-{% endwith %}
-{% endfor %}
-<form enctype="multipart/form-data" method="post" action="{{url_for('profile')}}" >
+<form enctype="multipart/form-data" method="post" action="{{url_for('view')}}" >
     <input type="file" name="file">
     <input type="submit"/>
 </form>
-</div>
+{% endfor %}
 </body>
 </html>
