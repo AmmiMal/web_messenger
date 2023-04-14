@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+*{
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-family: sans-serif;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+html{
+  font-size: 10px;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("../img/back.jpg")no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.container{
+  left: 7.5%;
+  backdrop-filter: blur(15px);
+  position: relative;
+  display: grid;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  grid-template-columns: 1fr 2fr;
+  grid-auto-rows: max-content;
+  grid-auto-columns: max-content;
+  grid-template-areas:
+  "userProfile about"
+  "userDetails news";
+  width: 85%;
+  height: 90vh;
+  padding: 20px;
+  border: 2px solid #fff;
+  border-radius: 25px;
+}
+
+.container .about{
+  background: transparent;
+  border: 2px solid rgb(255, 255, 255);
+  position: relative;
+  backdrop-filter: blur(3rem);
+  border-radius: 25px;
+  padding: 15px;
+}
+
+.container li{
+  color: #FFF;
+}
+
+.container .userDetails{
+  background: transparent;
+  border: 2px solid rgb(255, 255, 255);
+  position: relative;
+  backdrop-filter: blur(3rem);
+  border-radius: 25px;
+  padding: 15px;
+  min-width: 250px;
+}
+
+.container .userProfile{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  box-shadow: none;
+}
+
+.container .userProfile .profile figure img{
+  width: 20rem;
+  height: 20rem;
+  border-radius: 80%;
+}
+
+.userDetails .userName .name{
+  color: #FFF;
+  font-size: 20px;
+  text-align: center;
+}
+
+.userDetails ul{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userDetails ul a{
+  border-radius: 25px;
+  margin: 10px;
+  color: #000;
+  font-weight: 500;
+  background-color: #fff;
+  padding: 9px 15px;
+}
+
+.container .news{
+  overflow-y: scroll;
+  max-height: 600px;
+  background: transparent;
+  border: 2px solid rgb(255, 255, 255);
+  position: relative;
+  backdrop-filter: blur(3rem);
+  border-radius: 25px;
+  padding: 15px;
+}
+
+.container .news h1{
+    color: #FFF;
+    font-size: 20px;
+    text-align: center;
+}
+
+.container .news h2{
+    color: #FFF;
+    font-size: 15px;
+    text-align: center;
+}
+
+.container .news autor{
+    color: #FFF;
+    font-size: 5px;
+    text-align: center;
+}
+
+.container .news content{
+    color: #FFF;
+    font-size: 10px;
+    text-align: center;
+}
+
+@media screen and (max-width: 1150px) {
+  html {
+    font-size: 10px;
+  }
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "userProfile"
+      "userDetails"
+      "about";
+    overflow-x: hidden;
+    overflow-y: inherit;
+    padding: 10px;
+    width: 90%;
+    height: 100%;
+  }
+
+  .userDetails {
+    margin-bottom: 3rem;
+  }
+}
+.input-file {
+	position: relative;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.input-file input[type=file] {
+	position: absolute;
+	opacity: 0;
+	display: flex;
+}
+.input-file input{
+	position: absolute;
+	opacity: 0;
+	display: flex;
+}

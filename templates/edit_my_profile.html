@@ -1,0 +1,59 @@
+{% extends "mainpage.html" %}
+
+{% block content %}
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="static/css/edit_profile.css">
+</head>
+
+<body>
+    <div class="container">
+        <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <section class="userProfile">
+            <div class="profile">
+                <figure><img src={{ avatar }} alt="profile" width="250px" height="250px"></figure>
+            </div>
+        </section>
+        <section class="about">
+            <li class="heading">Information</li>
+            <ul>
+                <li class="address">
+                    <h1 class="label">Address: </h1>
+                    {{ form.address(class="form-control", text='asd') }}
+                </li>
+                <li class="email">
+                    <h1 class="label">E-mail: </h1>
+                    {{ form.email(class="form-control", type="email") }}
+                </li>
+                <li class="site">
+                    <h1 class="label">Site: </h1>
+                    {{ form.site(class="form-control", type="url") }}
+                </li>
+                <li class="birthday">
+                    <h1 class="label">Birthday: </h1>
+                    {{ form.birthday(class="form-control", type="date") }}
+                </li>
+            </ul>
+        </section>
+        <section class="userDetails">
+            <div class="userName">
+                {{ form.name(class="form-control") }}
+                {{ form.surname(class="form-control") }}
+            </div>
+            <ul>
+                {{ form.submit(type="submit", class="btn btn-primary", style="width: 60px;
+                    height: 40px;
+                    border-radius: 40px;
+                    background: #fff;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 1em;
+                    font-weight: 600;") }}
+            </ul>
+        </section>
+        </form>
+    </div>
+</body>
+{% endblock %}

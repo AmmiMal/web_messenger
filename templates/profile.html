@@ -1,0 +1,54 @@
+{% extends "mainpage.html" %}
+
+{% block content %}
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="static/css/profile.css">
+</head>
+
+<body>
+    <div class="container">
+        <section class="userProfile">
+            <div class="profile">
+                <figure><img src={{ user.avatar }} alt="profile" width="250px" height="250px"></figure>
+            </div>
+        </section>
+        <section class="about">
+            <li class="heading">Information</li>
+            <ul>
+                <li class="address">
+                    <h1 class="label">Address: </h1>
+                    <span class="info">{{ user.address }}</span>
+                </li>
+
+                <li class="email">
+                    <h1 class="label">E-mail: </h1>
+                    <span class="info">{{ user.email }}</span>
+                </li>
+
+                <li class="site">
+                    <h1 class="label">Site: </h1>
+                    <span class="info"></span>{{ user.site }}</span>
+                </li>
+                <li class="birthday">
+                    <h1 class="label">Birthday: </h1>
+                    <span class="info">{{ user.birthday }}</span>
+                </li>
+            </ul>
+        </section>
+        <section class="userDetails">
+            <div class="userName">
+                <h1 class="name">{{ user.name }} {{ user.surname }}</h1>
+            </div>
+                <ul>
+                    <a href="/profile">
+                        <span class="text nav-text">Message</span>
+                    </a>
+                    <a href="/profile">
+                        <span class="text nav-text">Add friend</span>
+                    </a>
+                </ul>
+        </section>
+    </div>
+</body>
+{% endblock %}
