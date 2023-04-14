@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="static/mainpage.css"/>
+  <link rel="stylesheet" type="text/css" href="static/css/mainpage.css"/>
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -9,7 +9,7 @@
       <header>
           <div class="image-text">
             <span class="image">
-                <img src="static/logo.png" alt="logo">
+                <img src="static/img/logo.png" alt="logo">
             </span>
             <div class="text logo-text">
                 <span class="name">Messenger</span>
@@ -23,7 +23,7 @@
 
               <ul class="menu-links">
                   <li class="nav-link">
-                      <a href="/profile">
+                      <a href="/my_profile">
                         <i class='bx bx-user-circle icon'></i>
                           <span class="text nav-text">Profile</span>
                       </a>
@@ -64,4 +64,7 @@
       </div>
   </nav>
 </body>
+<main role="main" class="containers">
+    {% block content %}{% endblock %}
+</main>
 </html>

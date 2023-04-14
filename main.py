@@ -1,8 +1,10 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, session, flash, url_for
 from data import db_session
 from data.users import User
-from forms.user import RegisterForm, LoginForm
+from data.news import News
+from forms.user import RegisterForm, LoginForm, ProfileForm
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+import sqlite3
 
 
 app = Flask(__name__)
@@ -18,14 +20,8 @@ def load_user(user_id):
 
 
 @app.route("/")
-def page():
-    if current_user.is_authenticated:
-        return render_template("mainpage.html")
-    return redirect("/login")
-
-
 @app.route("/mainpage")
-def index():
+def mainpage():
     if current_user.is_authenticated:
         return render_template("mainpage.html")
     return redirect("/login")
@@ -76,6 +72,81 @@ def login():
 @login_required
 def logout():
     logout_user()
+    return redirect("/login")
+
+
+@app.route('/edit_my_profile', methods=['GET', 'POST'])
+def edit_profile():
+    form = ProfileForm()
+    if request.method == "GET":
+        if current_user.is_authenticated:
+            db_sess = db_session.create_session()
+            user = db_sess.query(User).filter(User.id == current_user.id).first()
+            form.name.data = user.name
+            form.surname.data = user.surname
+            form.address.data = user.address
+            form.email.data = user.email
+            form.site.data = user.site
+            form.birthday.data = user.birthday
+            avatar = user.avatar
+        else:
+            return redirect('/login')
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.id == current_user.id).first()
+        user.name = form.name.data
+        user.surname = form.surname.data
+        user.address = form.address.data
+        user.email = form.email.data
+        user.site = form.site.data
+        user.birthday = form.birthday.data
+        db_sess.commit()
+        return redirect('/my_profile')
+    return render_template('edit_my_profile.html', form=form, avatar=avatar)
+
+
+@app.route('/my_profile', methods=['GET', 'POST'])
+def my_profile():
+    if request.method == "GET":
+        if current_user.is_authenticated:
+            db_sess = db_session.create_session()
+            user = db_sess.query(User).filter(User.id == current_user.id).first()
+            news = db_sess.query(News).filter(News.user_id == current_user.id)
+            return render_template("my_profile.html", user=user, news=news)
+    print(request.method)
+    if request.method == "POST":
+        estination_path = ""
+        fileobj = request.files['file']
+        if fileobj:
+            file_extensions = ["JPG", "JPEG", "PNG", "GIF"]
+            uploaded_file_extension = fileobj.filename.split(".")[1]
+            # validating file extension
+            if (uploaded_file_extension.upper() in file_extensions):
+                destination_path = f"static/uploads/{fileobj.filename}"
+                fileobj.save(destination_path)
+                try:
+                    conn = sqlite3.connect("db/database.db")
+                    cursor = conn.cursor()
+                    # inserting data into table usercontent
+                    id = session['_user_id']
+                    cursor.execute(f"""update users set avatar=? where id = ?""", (destination_path, int(id)))
+                    conn.commit()
+                    conn.close()
+                except sqlite3.Error as error:
+                    # using flash function of flask to flash errors.
+                    flash(f"{error}")
+                    return redirect('/my_profile')
+    return redirect("/my_profile")
+
+
+@app.route("/profile&<int:id>")
+def profile(id):
+    if current_user.is_authenticated:
+        if current_user.id == id:
+            return redirect('/my_profile')
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.id == id).first()
+        return render_template("profile.html", user=user)
     return redirect("/login")
 
 

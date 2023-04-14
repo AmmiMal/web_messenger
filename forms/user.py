@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SubmitField, EmailField, BooleanField
+from wtforms import PasswordField, StringField, SubmitField, EmailField, BooleanField, DateField, URLField, FileField
 from wtforms.validators import DataRequired
+from data import db_session
+from data.users import User
 
 
 class RegisterForm(FlaskForm):
@@ -17,3 +19,14 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember me')
     submit = SubmitField('Login')
+
+
+class ProfileForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    surname = StringField('Surname', validators=[DataRequired()])
+    address = StringField('Address', validators=[DataRequired()])
+    email = EmailField('Email', validators=[DataRequired()])
+    site = URLField('Email', validators=[DataRequired()])
+    birthday = DateField('Email', validators=[DataRequired()])
+    avatar = FileField('Image')
+    submit = SubmitField('Save')

@@ -16,8 +16,10 @@ class User(SqlAlchemyBase, UserMixin):
     email = sqlalchemy.Column(sqlalchemy.String,
                               index=True, unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    created_date = sqlalchemy.Column(sqlalchemy.DateTime,
-                                     default=datetime.datetime.now)
+    address = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='No info')
+    site = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='No info')
+    birthday = sqlalchemy.Column(sqlalchemy.Date, nullable=True, default='No info')
+    avatar = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='static/img/default.jpg')
 
     def __repr__(self):
         return f'<User> {self.id} {self.name} {self.email}'
