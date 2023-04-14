@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h2>Your music</h2>
+    <audio controls="controls" autoplay="autoplay"></audio>
+    <ul>
+        {% for song in songs %}
+            <li><a href="javascript:void(0);" onclick="playSong('{{song[0]}}')">{{song[0]}}</a></li>
+        {% endfor %}
+    </ul>
+    {% with messages = get_flashed_messages() %}
+{% for message in messages %}
+    <div class="alert alert-danger">
+        <strong>Error!<strong>{{message}}
+    </div>
+{% endfor %}
+{% endwith %}
+    <script type="text/javascript">
+        function playSong(song){
+            $('audio').attr('src', '/static/music/'+song);
+        }
+    </script>
+<form enctype="multipart/form-data" method="post" action="{{url_for('music')}}" >
+    <input type="file" name="file">
+    <input type="submit"/>
+</form>
+</body>
+</html>

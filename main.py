@@ -4,6 +4,7 @@ from data.users import User
 from forms.user import RegisterForm, LoginForm
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 import sqlite3
+import os
 
 
 app = Flask(__name__)
@@ -74,7 +75,6 @@ def login():
 
 @app.route('/add', methods=['POST', 'GET'])
 def profile():
-    print(1000)
     if request.method == "GET":
         return render_template('home.html')
     elif request.method == "POST":
@@ -142,8 +142,46 @@ def view():
             flash("only images are accepted")
             return render_template('home.html')
     return redirect(url_for("view"))
-        # if request.form['s_b'] == ' Изменить / Добавить фото профиля ':
-        #     return render_template('home.html')
+
+
+@app.route("/music", methods=['GET', 'POST'])
+def music():
+    if request.method == "GET":
+        try:
+            conn = sqlite3.connect("db/database.db")
+            cursor = conn.cursor()
+            songs = cursor.execute(f"""select music from musics where id = {int(session['_user_id'])}""").fetchall()
+            print(songs)
+            conn.close()
+            return render_template('music.html', songs=songs)
+        except sqlite3.Error as error:
+            return
+    if request.method == "POST":
+        estination_path = ""
+        fileobj = request.files['file']
+        file_extensions = ["MPEG", "MP3", "MOV", "AVI"]
+        uploaded_file_extension = fileobj.filename.split(".")[1]
+        # validating file extension
+        if (uploaded_file_extension.upper() in file_extensions):
+            destination_path = fileobj.filename
+            fileobj.save(f"static/music/{fileobj.filename}")
+            try:
+                conn = sqlite3.connect("db/database.db")
+                cursor = conn.cursor()
+                # inserting data into table usercontent
+                id = session['_user_id']
+                cursor.execute(f"""insert into musics (id, music) values (?, ?)""", (int(id), destination_path))
+                print(1)
+                conn.commit()
+                conn.close()
+            except sqlite3.Error as error:
+                # using flash function of flask to flash errors.
+                flash(f"{error}")
+                return render_template('home.html')
+        else:
+            flash("only images are accepted")
+            return render_template('home.html')
+    return redirect(url_for("music"))
 
 
 
