@@ -179,8 +179,7 @@ def music():
                 flash(f"{error}")
                 return render_template('home.html')
         else:
-            flash("only images are accepted")
-            return render_template('home.html')
+            flash("only music are accepted")
     return redirect(url_for("music"))
 
 
