@@ -1,0 +1,53 @@
+{% extends "mainpage.html" %}
+
+{% block content %}
+<head>
+    <title>Dialogue with {{ user.name }}</title>
+    <link rel="stylesheet" href="static/css/message.css">
+</head>
+
+<body>
+    <div class="container">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+        <div class="image-text">
+            <span class="image">
+                <img src={{ user.avatar }}>
+            </span>
+            <div class="text logo-text">
+                <span class="name">{{ user.name }} {{ user.surname }}</span>
+            </div>
+        </div>
+        <div class="dialogue" id="dialogueid">
+            {% for item in messages%}
+            <div class="form-box">
+                <div class="autor" style="color: black; font-weight: 650;">
+                    {{item.user.name}}, {{item.created_date}}
+                </div>
+                <div class="content" style="text-indent: 20px; color: #FFF">
+                    {{item.content}}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="inputbox">
+            {{ form.message(class="form-control") }}
+            {{ form.submit(type="submit", class="btn btn-primary", style="margin: 10px;
+                  color: black;
+                  width: 60px;
+                  height: 40px;
+                  border-radius: 40px;
+                  background: #fff;
+                  border: none;
+                  outline: none;
+                  cursor: pointer;
+                  font-size: 1em;
+                  font-weight: 600;") }}
+        </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        dialogueid.scrollTop = dialogueid.scrollHeight
+    </script>
+</body>
+{% endblock %}

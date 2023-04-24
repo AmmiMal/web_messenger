@@ -2,7 +2,7 @@
 
 {% block content %}
 <head>
-    <title>Profile</title>
+    <title>Profile {{ user.name }}</title>
     <link rel="stylesheet" href="static/css/profile.css">
 </head>
 
@@ -41,11 +41,8 @@
                 <h1 class="name">{{ user.name }} {{ user.surname }}</h1>
             </div>
                 <ul>
-                    <a href="/profile">
+                    <a href="/dialogue&{{ user.id }}">
                         <span class="text nav-text">Message</span>
-                    </a>
-                    <a href="/profile">
-                        <span class="text nav-text">Add friend</span>
                     </a>
                 </ul>
         </section>

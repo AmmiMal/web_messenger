@@ -1,0 +1,38 @@
+{% extends "mainpage.html" %}
+
+{% block content %}
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="static/css/dialogues.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="text">
+            <span class="logo">My Dialogues</span>
+        </div>
+        <div class="dialogues">
+            {% for user in users%}
+            <div class="dialogue">
+                <div class="user">
+                    <span class="image">
+                        <img src={{ user.avatar }}>
+                    </span>
+                    <div class="text logo-text">
+                        <span class="name">{{ user.name }} {{ user.surname }}</span>
+                    </div>
+                </div>
+                <ul class="buttons">
+                    <a href="/dialogue&{{ user.id }}">
+                        <span class="btn">Message</span>
+                    </a>
+                    <a href="/delete_dialogue&{{ user.id }}">
+                        <span class="btn">Delete</span>
+                    </a>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+{% endblock %}

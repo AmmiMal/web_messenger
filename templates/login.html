@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="static/css/login.css">
-    <title></title>
+    <title>Login</title>
 </head>
 <body>
     <section>
@@ -22,7 +22,7 @@
                         {{ form.password(class="form-control", type="password") }}
                     </div>
                     <div class="forget">
-                        <label for=""><input type="checkbox" name="" id="">Remember me. <a href="#">Forget Password?</a></label>
+                        <label for=""><input type="checkbox" name="" id="">Remember me.</label>
                     </div>
                     {{ form.submit(type="submit", class="btn btn-primary", style="width: 100%;
                             height: 40px;
@@ -35,6 +35,19 @@
                             font-weight: 600;")}}
                     <div class="register">
                         <p>Don't have an account? <a href="/register">Register</a></p>
+                    </div>
+                    <div style="position: relative;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            top: 50%;
+                            color: red;
+                            font-size: 1em;
+                            pointer-events: none;
+                            transition: .5s;
+                            top: -1px;
+                            font-weight: 650;">
+                        {{ message }}
                     </div>
                 </form>
             </div>

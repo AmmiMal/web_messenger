@@ -1,7 +1,5 @@
-import datetime
 import sqlalchemy
 from .db_session import SqlAlchemyBase
-from sqlalchemy import orm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -18,7 +16,7 @@ class User(SqlAlchemyBase, UserMixin):
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     address = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='No info')
     site = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='No info')
-    birthday = sqlalchemy.Column(sqlalchemy.Date, nullable=True, default='No info')
+    birthday = sqlalchemy.Column(sqlalchemy.Date, nullable=True)
     avatar = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='static/img/default.jpg')
 
     def __repr__(self):

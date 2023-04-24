@@ -1,8 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField, EmailField, BooleanField, DateField, URLField, FileField
 from wtforms.validators import DataRequired
-from data import db_session
-from data.users import User
 
 
 class RegisterForm(FlaskForm):

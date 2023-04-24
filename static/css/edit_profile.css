@@ -23,7 +23,6 @@ body{
 }
 
 .container{
-  left: 22.5%;
   backdrop-filter: blur(15px);
   position: relative;
   display: grid;
@@ -35,7 +34,7 @@ body{
   grid-template-areas:
   "userProfile about"
   "userDetails";
-  width: 55%;
+  width: 800px;
   height: 90vh;
   padding: 20px;
   border: 2px solid #fff;
