@@ -107,3 +107,31 @@ body {
   font-weight: 600;
 }
 
+.input-file {
+	position: relative;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.input-file input[type=file] {
+	position: absolute;
+	opacity: 0;
+	display: flex;
+}
+.input-file input{
+	position: absolute;
+	opacity: 0;
+	display: flex;
+}
+
+

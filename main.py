@@ -174,7 +174,7 @@ def delete_dialogue(id):
         if not chat:
             chat = db_sess.query(Chat).filter(Chat.user1 == id, Chat.user2 == current_user.id).first()
         if chat:
-            messages = db_sess.query(Message).filter(Message.chat_id == chat.chat_id).first()
+            messages = db_sess.query(Message).filter(Message.chat_id).first()
             db_sess.delete(chat)
             db_sess.delete(messages)
             db_sess.commit()
@@ -255,7 +255,7 @@ def music():
             except sqlite3.Error as error:
                 # using flash function of flask to flash errors.
                 flash(f"{error}")
-                return render_template('home.html')
+                return redirect('/music')
         else:
             flash("only music are accepted")
     return redirect(url_for("music"))
