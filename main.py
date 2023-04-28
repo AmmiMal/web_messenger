@@ -8,6 +8,7 @@ from forms.user import RegisterForm, LoginForm, ProfileForm
 from forms.chat import MessageForm
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 import sqlite3
+import requests
 
 
 app = Flask(__name__)
@@ -259,6 +260,45 @@ def music():
         else:
             flash("only music are accepted")
     return redirect(url_for("music"))
+
+
+@app.route('/weather', methods=['GET', 'POST'])
+def weather():
+    if request.method == "GET":
+        conn = sqlite3.connect("db/database.db")
+        cursor = conn.cursor()
+        songs = cursor.execute(f"""select music from musics where id = {int(session['_user_id'])}""").fetchall()
+        print(songs)
+        conn.close()
+        return render_template('weather.html')
+    if request.method == "POST":
+        s_city = request.form['name']
+        city_id = 0
+        appid = "6f50f9148db63842ad3384b3f567518e"
+        try:
+            res = requests.get("http://api.openweathermap.org/data/2.5/find",
+                               params={'q': s_city, 'type': 'like', 'units': 'metric', 'APPID': appid})
+            data = res.json()
+            cities = ["{} ({})".format(d['name'], d['sys']['country'])
+                      for d in data['list']]
+            city_id = data['list'][0]['id']
+        except Exception as e:
+            print("Exception (find):", e)
+            pass
+        try:
+            res = requests.get("http://api.openweathermap.org/data/2.5/weather",
+                               params={'id': city_id, 'units': 'metric', 'lang': 'ru', 'APPID': appid})
+            data = res.json()
+            a = "Погодные условия: " + str(data['weather'][0]['description'])
+            b = "Температура: " + str(data['main']['temp'])
+            c = "Минимальная температура: " + str(data['main']['temp_min'])
+            d = "Максимальная температура: " + str(data['main']['temp_max'])
+            return render_template('output_weather.html', dat=[a, b, c, d])
+
+        except Exception as e:
+            print("Exception (weather):", e)
+            pass
+
 
 
 def main():

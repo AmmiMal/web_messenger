@@ -1,0 +1,19 @@
+{% extends "mainpage.html" %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <link rel="stylesheet" href="static/css/dialogues.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<form method="post" action="{{url_for('weather')}}" >
+    <p><label for="name">Введите регион в формате</label></p>
+    <p><label for="name">"Название города по-английски с большой буквы,"</label></p>
+    <p><label for="name">первые две буквы названия страны прописными буквами</label></p>
+    <p><label for="name">Например "Moscow,RU"</label></p>
+    <input type="text" id="name" name="name" required >
+</form>
+</body>
+{% endblock %}

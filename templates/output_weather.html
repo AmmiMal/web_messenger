@@ -1,0 +1,17 @@
+{% extends "mainpage.html" %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <link rel="stylesheet" href="static/css/dialogues.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<ol >
+            {% for song in dat %}
+    <li><a href="javascript:void(0);" style="color: white;">{{song}}</a></li>
+            {% endfor %}
+</ol>
+</body>
+{% endblock %}
