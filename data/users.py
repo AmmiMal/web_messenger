@@ -2,6 +2,7 @@ import sqlalchemy
 from .db_session import SqlAlchemyBase
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlalchemy import orm
 
 
 class User(SqlAlchemyBase, UserMixin):
@@ -18,6 +19,7 @@ class User(SqlAlchemyBase, UserMixin):
     site = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='No info')
     birthday = sqlalchemy.Column(sqlalchemy.Date, nullable=True)
     avatar = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='static/img/default.jpg')
+    news = orm.relationship("News", back_populates='user')
 
     def __repr__(self):
         return f'<User> {self.id} {self.name} {self.email}'
