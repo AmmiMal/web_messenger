@@ -9,11 +9,21 @@
 </head>
 <body>
 <form method="post" action="{{url_for('weather')}}" >
-    <p><label for="name">Введите регион в формате</label></p>
-    <p><label for="name">"Название города по-английски с большой буквы,"</label></p>
-    <p><label for="name">первые две буквы названия страны прописными буквами</label></p>
-    <p><label for="name">Например "Moscow,RU"</label></p>
+    <p><label for="name" style="color: white;">Введите регион в формате</label></p>
+    <p><label for="name" style="color: white;">"Название города по-английски с большой буквы,"</label></p>
+    <p><label for="name" style="color: white;">первые две буквы названия страны прописными буквами</label></p>
+    <p><label for="name" style="color: white;">Например "Moscow,RU"</label></p>
     <input type="text" id="name" name="name" required >
+    <div style="display: flex;
+        top: 50%;
+        color: red;
+        font-size: 1em;
+        pointer-events: none;
+        transition: .5s;
+        top: -1px;
+        font-weight: 650;">
+    {{ message }}
+    </div>
 </form>
 </body>
 {% endblock %}

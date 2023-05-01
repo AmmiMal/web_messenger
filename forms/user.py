@@ -23,7 +23,6 @@ class ProfileForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     surname = StringField('Surname', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])
-    email = EmailField('Email', validators=[DataRequired()])
     site = URLField('Email', validators=[DataRequired()])
     birthday = DateField('Email', validators=[DataRequired()])
     avatar = FileField('Image')

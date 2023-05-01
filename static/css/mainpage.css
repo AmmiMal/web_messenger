@@ -25,7 +25,7 @@ body{
     background-size: cover;
 }
 
-.sidebar{
+.sidebarr{
     position: fixed;
     top: 30px;
     left: 20px;
@@ -41,7 +41,7 @@ body{
     border-radius: 25px;
 }
 
-.sidebar li{
+.sidebarr li{
     height: 50px;
     list-style: none;
     display: flex;
@@ -49,13 +49,13 @@ body{
     margin-top: 10px;
 }
 
-.sidebar header .image,
-.sidebar .icon{
+.sidebarr header .image,
+.sidebarr .icon{
     min-width: 60px;
     border-radius: 6px;
 }
 
-.sidebar .icon{
+.sidebarr .icon{
     min-width: 60px;
     border-radius: 6px;
     height: 100%;
@@ -65,58 +65,57 @@ body{
     font-size: 20px;
 }
 
-.sidebar .text,
-.sidebar .icon{
+.sidebarr .text,
+.sidebarr .icon{
     color: #FFF;
-    transition: var(--tran-03);
 }
 
-.sidebar .text{
+.sidebarr .text{
     font-size: 17px;
     font-weight: 500;
    white-space: nowrap;
     opacity: 1;
 }
 
-.sidebar header{
+.sidebarr header{
   position: relative;
 }
 
-.sidebar header .image-text{
+.sidebarr header .image-text{
     display: flex;
     align-items: center;
 }
-.sidebar header .logo-text{
+.sidebarr header .logo-text{
    display: flex;
   flex-direction: column;
 }
-header .image-text .name{
+headerr .image-text .name{
    margin-top: 2px;
    font-size: 18px;
    font-weight: 600;
 }
 
-header .image-text .sec-text{
+headerr .image-text .sec-text{
     font-size: 16px;
     margin-top: -2px;
     display: block;
 }
 
-.sidebar header .image{
+.sidebarr header .image{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.sidebar header .image img{
+.sidebarr header .image img{
    width: 40px;
    border-radius: 6px;
  }
 
-.sidebar .menu{
+.sidebarr .menu{
     margin-top: 40px;
 }
-.sidebar li a{
+.sidebarr li a{
     list-style: none;
     height: 100%;
     background-color: transparent;
@@ -126,10 +125,9 @@ header .image-text .sec-text{
     width: 100%;
     border-radius: 6px;
     text-decoration: none;
-    transition: var(--tran-03);
 }
 
-.sidebar li a:hover{
+.sidebarr li a:hover{
     background-color: var(--primary-color);
 }
 .sidebar li a:hover .icon,
@@ -138,9 +136,23 @@ header .image-text .sec-text{
 }
 
 
-.sidebar .menu-bar{
+.sidebarr .menu-bar{
     height: calc(100% - 70px);
     flex-direction: column;
     display: flex;
     justify-content: space-between;
+}
+
+.weather{
+    display: flex;
+    position: absolute;
+    top: 3%;
+    left: 85%;
+    height: 15vh;
+    width: 270px;
+    padding: 10px 14px;
+    background: transparent;
+    border: 2px solid rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
 }

@@ -19,6 +19,8 @@ class User(SqlAlchemyBase, UserMixin):
     site = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='No info')
     birthday = sqlalchemy.Column(sqlalchemy.Date, nullable=True)
     avatar = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='static/img/default.jpg')
+    city_weather = sqlalchemy.Column(sqlalchemy.Integer, default='Murmansk,RU')
+    city_id = sqlalchemy.Column(sqlalchemy.Integer, default=524304)
     news = orm.relationship("News", back_populates='user')
 
     def __repr__(self):

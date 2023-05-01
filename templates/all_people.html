@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div class="text">
-            <span class="logo">My Dialogues</span>
+            <span class="logo">All people</span>
         </div>
         <div class="dialogues">
             {% for user in users%}
@@ -19,15 +19,12 @@
                         <img src={{ user.avatar }}>
                     </span>
                     <div class="text logo-text">
-                        <span class="name">{{ user.name }} {{ user.surname }}</span>
+                        <a class="name" href="/profile&{{ user.id }}">{{ user.name }} {{ user.surname }}</a>
                     </div>
                 </div>
                 <ul class="buttons">
                     <a href="/dialogue&{{ user.id }}">
                         <span class="btn">Message</span>
-                    </a>
-                    <a href="/delete_dialogue&{{ user.id }}">
-                        <span class="btn">Delete</span>
                     </a>
                 </ul>
             </div>

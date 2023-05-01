@@ -79,6 +79,10 @@ body{
   border-radius: 80%;
 }
 
+.userDetails{
+  align-self: start;
+}
+
 .userDetails .userName .name{
   color: #FFF;
   font-size: 20px;
@@ -102,7 +106,7 @@ body{
 
 .container .news{
   overflow-y: scroll;
-  max-height: 600px;
+  max-height: 535px;
   background: transparent;
   border: 2px solid rgb(255, 255, 255);
   position: relative;
