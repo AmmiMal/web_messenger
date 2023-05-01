@@ -155,7 +155,8 @@ body{
     grid-template-areas:
       "userProfile"
       "userDetails"
-      "about";
+      "about"
+      "news";
     overflow-x: hidden;
     overflow-y: inherit;
     padding: 10px;

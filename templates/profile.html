@@ -28,7 +28,7 @@
 
                 <li class="site">
                     <h1 class="label">Site: </h1>
-                    <span class="info"></span>{{ user.site }}</span>
+                    <span class="info">{{ user.site }}</span>
                 </li>
                 <li class="birthday">
                     <h1 class="label">Birthday: </h1>
@@ -45,6 +45,20 @@
                         <span class="text nav-text">Message</span>
                     </a>
                 </ul>
+        </section>
+        <section class="news">
+            <h1>Новости</h1>
+            {% for item in news%}
+            <div class="form-box">
+                <h2>{{item.title}}</h2>
+                <div class="autor" style="font-weight: 550;">
+                    Автор - {{item.user.name}}, Дата написания - {{item.created_date}}
+                </div>
+                <div class="content" style="font-size: 15px;">
+                    {{item.content}}
+                </div>
+            </div>
+            {% endfor %}
         </section>
     </div>
 </body>

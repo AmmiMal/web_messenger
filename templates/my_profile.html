@@ -78,10 +78,10 @@
             {% for item in news%}
             <div class="form-box">
                 <h2>{{item.title}}</h2>
-                <div class="autor">
+                <div class="autor" style="font-weight: 550;">
                     Автор - {{item.user.name}}, Дата написания - {{item.created_date}}
                 </div>
-                <div class="content">
+                <div class="content" style="font-size: 15px;">
                     {{item.content}}
                 </div>
                 {% if current_user.is_authenticated and current_user == item.user %}
